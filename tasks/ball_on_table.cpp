@@ -1,6 +1,7 @@
 #include <iostream>
 #include<vector>
 #include<fstream>
+#include<cstdlib>
 
 class Table {
 public:
@@ -24,12 +25,12 @@ private:
 };
 
 bool Table::contains_ball(double x, double y) { 
-    return x >= 0 && x < width && y >= 0 && y < height;
+    return x >= 0 && x <= width && y >= 0 && y <= height;
 
 }
 
 void Table::reflect(double& x, double& y, double& vx, double& vy) {
-    if (x < 0) {
+    if (x <= 0) {
         x  = -x;
         vx = -vx;
     }
@@ -37,7 +38,7 @@ void Table::reflect(double& x, double& y, double& vx, double& vy) {
         x  = 2 * width - x;
         vx = -vx;
     }
-    if (y < 0) {
+    if (y <= 0) {
         y  = -y;
         vy = -vy;
     }
@@ -90,7 +91,7 @@ struct SimResult {
     std::vector<double> x_log, y_log, vx_log, vy_log;
 };
 
-SimResult run_simulation(Ball& b, int& steps, double& dt) {
+SimResult run_simulation(Ball& b, int steps, double dt) {
 
     SimResult res;
 
@@ -105,7 +106,7 @@ SimResult run_simulation(Ball& b, int& steps, double& dt) {
     return res;
 }
 
-void write_csv(SimResult& result, double dt, std::string file_name = "results.csv") {
+void write_csv(const SimResult& result, double dt, std::string file_name = "results.csv") {
     std::ofstream file(file_name);                  // open (creates/overwrites)
     if (!file) {
         std::cerr << "Could not open file\n";
