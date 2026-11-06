@@ -1,4 +1,4 @@
-# C++ Session Notes (Fasta Robotics Interview Prep)
+# C++ Session Notes
 
 Compile single files:
 ```bash
