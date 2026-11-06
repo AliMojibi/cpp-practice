@@ -127,11 +127,11 @@ void write_csv(const SimResult& result, double dt, std::string file_name = "resu
 
 int main(){
 
-    int n_steps = 5000;
+    int n_steps = 1500;
     double dt = 0.1;
 
     Table my_table(100, 50);
-    Ball my_ball(5, 20, 0.5, 0.5, &my_table);
+    Ball my_ball(5, 20, 1, 0.5, &my_table);
     
     SimResult res = run_simulation(my_ball, n_steps, dt);
     write_csv(res, dt);
